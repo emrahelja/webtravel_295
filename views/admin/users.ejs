@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>User Management</h1>
+  <table>
+    <tr>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Active</th>
+      <th>Action</th>
+    </tr>
+    <% users.forEach(user => { %>
+    <tr>
+      <td><%= user.username %></td>
+      <td><%= user.password %></td>
+      <td><%= user.active %></td>
+      <td>
+        <form action="/admin/edit/<%= user._id %>" method="POST">
+          <input type="text" name="username" value="<%user.username %>" placeholder="New username" />
+          <input type="password" name="password" value="<%user.password %>" placeholder="New password" />
+          <select name="active">
+            <option value="true" <%= user.active ? 'selected' : '' %>>Active</option>
+            <option value="false" <%= !user.active ? 'selected' : '' %>>Inactive</option>
+          </select>
+          <button type="submit">Save</button>
+        </form>
+      </td>
+    </tr>
+    <% }); %>
+  </table>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<nav class="nav" >
+  <ul>
+    <li>
+      <a href="/admin" 
+        >AdminPage</a
+      >
+    </li>
+  </nav>
+<div class="author">
+  <h1 class="author__heading">Travel Agency</h1>
+  <p>you are viewing this page as a guest</p>
+  <p>please log in for more</p>
+  <li>
+    <a href="/login" class="<%= isActiveRoute('/login', currentRoute) %>"
+      >LogIn or Register</a
+    >
+  </li>
+</div>
+
+<section class="articles">
+  <h2 class="articles__heading">Latest Posts</h2>
+
+  <ul class="article-ul">
+    <% data.forEach(post => { %>
+    <li class="article-item">
+      <a href="/post/<%= post._id %>" class="article-link">
+        <div class="article-content">
+          <img
+            src="<%= post.image %>"
+            alt="<%= post.title %> Image"
+            class="article-image"
+          />
+          <div class="article-details">
+            <h3 class="article-title"><%= post.title %></h3>
+            <p class="article-description"><%= post.description %></p>
+          </div>
+        </div>
+        <span class="article-list__date"
+          ><%= post.createdAt.toDateString() %></span
+        >
+      </a>
+    </li>
+    <% }) %>
+  </ul>
+
+  <% if (nextPage !== null) { %>
+  <a href="/?page=<%= nextPage %>" class="pagination">&lt; View Older Posts</a>
+  <% } %>
+</section>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <header class="header">
+      <a href="/" class="header__logo">Travel Agency</a>
+    </header>
+    <nav class="nav">
+      <a href="/dashboard" class="button"><- Back</a>
+      <a href="/add-post" class="button">+ Add New</a>
+      <a href="/add-user" class="button">+ Add New User</a>
+      <a href="/users" class="button"> Edit Users</a>
+      <a href="/">LogOut</a>
+    </nav>
+    <title>User List</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      tr:hover {
+        background-color: #f5f5f5;
+      }
+      a.button {
+        display: inline-block;
+        padding: 8px 12px;
+        background-color: #4caf50;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      a.button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>User List</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(user => { %>
+        <tr>
+          <td><%= user.username %></td>
+          <td><%= user.role %></td>
+          <td><%= user.active ? 'Active' : 'Inactive' %></td>
+          <td>
+            <a href="edit-user" class="button">Edit</a>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>

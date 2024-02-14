@@ -1,0 +1,43 @@
+<h1><%= data.title %></h1>
+
+<% if (data.image) { %>
+<div style="text-align: center">
+  <img
+    src="<%= data.image %>"
+    alt="Post Image"
+    style="max-width: 40%; display: inline-block"
+  />
+</div>
+<% } %>
+
+<article class="article"><%= data.body %></article>
+
+<!-- Display existing comments -->
+<% if (data.comments && data.comments.length > 0) { %>
+<div>
+  <h2>Comments</h2>
+  <ul>
+    <% data.comments.forEach(comment => { %>
+    <li><%= comment.text %> - <%= comment.date %></li>
+    <% }) %>
+  </ul>
+</div>
+<% } else { %>
+<div>
+  <p>No comments yet.</p>
+</div>
+<% } %>
+
+<!-- Text box for new comment -->
+<form action="/post/<%= data._id %>/comment" method="POST">
+  <label for="comment">New Comment:</label><br />
+  <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br />
+  <input type="submit" value="Submit" />
+</form>
+<button onclick="apply()">Apply</button>
+
+<script>
+  function apply() {
+    alert("Successfully Applied");
+  }
+</script>

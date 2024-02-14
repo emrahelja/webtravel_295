@@ -1,0 +1,52 @@
+<a href="/dashboard">&larr; Back</a>
+<div class="admin-title">
+  <h2>Add New Post</h2>
+</div>
+
+<label for="departureDate">Departure Date:</label><br />
+<input type="date" id="departureDate" name="departureDate" required /><br />
+
+<label for="arrivalDate">Arrival Date:</label><br />
+<input type="date" id="arrivalDate" name="arrivalDate" required /><br />
+
+<label for="image">Upload Image:</label><br />
+<input
+  type="file"
+  id="image"
+  name="image"
+  accept="image/*"
+  onchange="previewImage(event)"
+/><br />
+<img
+  id="preview"
+  src="#"
+  alt="Preview Image"
+  style="max-width: 300px; display: none"
+/><br />
+
+<form action="/add-post" method="POST">
+  <label for="title"><b>Title</b></label>
+  <input type="text" placeholder="Post Title" name="title" />
+
+  <label for="body"><b>Content</b></label>
+  <textarea name="body" cols="50" rows="10"></textarea>
+
+  <input type="submit" value="Add" class="btn" />
+</form>
+
+<script>
+  function previewImage(event) {
+    const input = event.target;
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const img = document.getElementById("preview");
+        img.src = e.target.result;
+        img.style.display = "block";
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>

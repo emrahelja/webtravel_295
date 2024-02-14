@@ -1,0 +1,46 @@
+<nav class="nav" >
+    <ul>
+      <li>
+        <a href="/" 
+          >LogOut</a
+        >
+      </li>
+      <li>
+        <a href="/applied-trips" 
+          >Apply for Trip</a
+        >
+      </li>
+    </nav>
+
+<div class="author">
+  <h1 class="author__heading">Travel Agency</h1>
+  <p class="author__body">Welcome</p>
+
+</div>
+
+<section class="articles">
+  <h2 class="articles__heading">Latest Posts</h2>
+
+  <ul class="article-ul">
+    <% data.forEach(post => { %>
+    <li class="article-item">
+      <a href="/post/<%= post._id %>" class="article-link">
+        <div class="article-content">
+          <img
+            src="<%= post.image %>"
+            alt="<%= post.title %> Image"
+            class="article-image"
+          />
+          <div class="article-details">
+            <h3 class="article-title"><%= post.title %></h3>
+            <p class="article-description"><%= post.description %></p>
+          </div>
+        </div>
+        <span class="article-list__date"
+          ><%= post.createdAt.toDateString() %></span
+        >
+      </a>
+    </li>
+    <% }) %>
+  </ul>
+</section>
